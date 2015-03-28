@@ -54,9 +54,9 @@ qemu: out/main.bin $(QEMU_STM32)
 	$(QEMU_STM32) -M stm32-p103 -kernel main.bin -semihosting
 
 qemuauto: out/main.bin gdbscript
-	bash emulate.sh out/main.bin
+	bash emulate.sh out/main.bin	
+	python context_switch.py
 	python log2grasp.py
 	../grasp_linux/grasp sched.grasp
-
 clean:
-	rm -rf out log sched.grasp
+	rm -rf out log *.grasp 
